@@ -2,37 +2,240 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.ip2 {
+  border-radius: 25px;
+  border: 2px solid #609;
+  padding: 1rem;
+  width: 5rem;
+  height: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body,
+input,
+body h1,
+body h3,
+body a,
+body span {
+  color: whitesmoke;
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+  padding: 0px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#app,
+#app-background {
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  overflow: hidden;
+  position: fixed;
+  z-index: 1;
+}
+
+#app,
+#app-background,
+#app-background-image {
+  background-image: url(./images/background1.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#app,
+.logged-in,
+#app-menu {
+  height: auto;
+  overflow: initial;
+  opacity: 1;
+  pointer-events: all;
+  /* transform: translateY(0%); */
+}
+
+#app,
+#app-menu {
+  position: relative;
+  transition: opacity 250ms, transform 250ms;
+  z-index: 2;
+}
+
+#app,
+#app-menu,
+#app-menu-content-wrapper {
+  background: linear-gradient(to bottom, transparent, #1e1e1e);
+  margin-top: 30vh;
+  min-height: 80vh;
+}
+
+/* #app,
+#app-menu,
+#app-menu-content-wrapper,
+#app-menu-content {
+  margin: auto;
+  max-width: 1600px;
+  position: relative;
+} */
+
+#app
+  #app-menu
+  #app-menu-content-wrapper
+  #app-menu-content
+  #app-menu-content-header {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+}
+
+.fa-duotone::before {
+  position: absolute;
+  /* color: var(--fa-primary-color, inherit);
+  opacity: var(--fa-primary-opacity, 1); */
+}
+
+/* .fa-duotone::after {
+  opacity: var(--fa-secondary-opacity, 0.4);
+} */
+
+.info {
+  align-items: flex-end;
+  display: flex;
+}
+
+.time {
+  color: whitesmoke;
+  font-size: 3.5em;
+  height: 60px;
+  line-height: 73px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#app .info .weather {
+  display: inline-flex;
+  height: 17px;
+  margin-bottom: 6px;
+  margin-left: 20px;
+}
+
+#app .info .weather .weather-temperature-value {
+  font-size: 1.5em;
+  height: 20px;
+  margin-left: 5px;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#app .info .weather span {
+  align-items: center;
+  display: inline-flex;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+#app .info .weather i,
+#app .info .weather span {
+  /* align-items: center; */
+  display: inline-flex;
+}
+
+#app .info .weather .weather-temperature-unit {
+  align-items: flex-start;
+  font-size: 0.6em;
+  margin-left: 3px;
+}
+
+#app .reminder {
+  display: flex;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+#app .reminder .reminder-icon {
+  align-items: center;
+  height: 24px;
+}
+
+#app .reminder i,
+#app .reminder div {
+  display: inline-flex;
+}
+
+#app .reminder span {
+  color: white;
+  font-size: 1.1em;
+}
+
+#app .reminder .reminder-time {
+  color: black;
+  font-size: 0.8em;
+  margin-left: 6px;
+}
+
+#app .user-status-button {
+  cursor: pointer;
+  margin-top: 10px;
+  outline: none;
+  padding: 5px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.clear-button {
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+.clear-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#app #quick-nav {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  overflow: auto;
+  padding-bottom: 5px;
+  width: 100%;
+}
+
+#app #quick-nav .quick-nav-item {
+  padding: 10px 20px;
+}
+
+#app .menu-section {
+  margin-top: 60px;
+}
+
+#app .menu-section .menu-section-title {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+
+#app .menu-section .menu-section-title .menu-section-title-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25em;
+}
+
+#app #weather-section .menu-section-content {
+  display: flex;
+  gap: 1em;
+  padding: 5px 0px;
+  width: 100%;
+}
+
+#app .menu-section .menu-section-content {
+  margin-top: 15px;
+  /* padding-top: 5px; */
+}
+
+#app .scrollable-component {
+  overflow: auto;
+}
+
+@media (max-width: 1300px) {
+  #app #app-menu #app-menu-content-wrapper {
+    padding: 30px;
   }
 }
