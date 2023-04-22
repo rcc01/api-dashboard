@@ -37,7 +37,7 @@ body span {
 #app,
 #app-background,
 #app-background-image {
-  background-image: url(./images/background1.webp);
+  background-image: url(./images/background3.webp);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -63,7 +63,7 @@ body span {
 #app-menu,
 #app-menu-content-wrapper {
   background: linear-gradient(to bottom, transparent, #1e1e1e);
-  margin-top: 30vh;
+  margin-top: 20vh;
   min-height: 80vh;
 }
 
@@ -84,7 +84,6 @@ body span {
   display: flex;
   justify-content: space-between;
 }
-
 .fa-duotone::before {
   position: absolute;
   /* color: var(--fa-primary-color, inherit);
@@ -201,6 +200,7 @@ body span {
 
 #app #quick-nav .quick-nav-item {
   padding: 10px 20px;
+  cursor: pointer;
 }
 
 #app .menu-section {
@@ -227,15 +227,414 @@ body span {
 
 #app .menu-section .menu-section-content {
   margin-top: 15px;
-  /* padding-top: 5px; */
+  padding-top: 5px;
 }
 
 #app .scrollable-component {
   overflow: auto;
 }
 
+#app #weather-section .menu-section-content .day-card {
+  backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  height: 20vw;
+  max-height: 170px;
+  min-height: 140px;
+  min-width: 180px;
+  position: relative;
+  transition: transform 250ms;
+  width: calc(100% / 7);
+}
+
+#app #weather-section .menu-section-content .day-card .day-card-content {
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 20px);
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+#app
+  #weather-section
+  .menu-section-content
+  .day-card
+  .day-card-content
+  .day-weather-temperature {
+  align-items: flex-start;
+  display: flex;
+  font-size: 0.9em;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.day-weather-description {
+  text-align: center;
+}
+
+#app #weather-section .menu-section-content .day-card .day-card-content span {
+  color: whitesmoke;
+  text-align: center;
+}
+
+.weather-icon-info {
+  color: #fdd835 !important;
+}
+
+.day-weather-icon {
+  /* text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1); */
+  text-align: center;
+  font-size: 3.5em;
+}
+
+#app .menu-section {
+  margin-top: 60px;
+}
+
+#app .menu-section .menu-section-title {
+  align-items: center;
+  display: flex;
+  gap: 6px;
+}
+
+#app #restaurants-section .menu-section-content {
+  display: flex;
+  gap: 1em;
+  margin-top: 15px;
+  padding-top: 5px;
+}
+
+#app .menu-section .menu-section-title .menu-section-title-text {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.25em;
+}
+
+#app #restaurants-section .menu-section-content .restaurant-card {
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 14vw;
+  max-height: 240px;
+  position: relative;
+
+  width: 25%;
+}
+
+.background-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#app
+  #restaurants-section
+  .menu-section-content
+  .restaurant-card
+  .restaurant-card-content {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  border-radius: 10px;
+  height: 100%;
+  width: 100%;
+}
+
+#app
+  #restaurants-section
+  .menu-section-content
+  .restaurant-card
+  .restaurant-card-content
+  .restaurant-card-content-items {
+  bottom: 0px;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  position: absolute;
+  right: 0px;
+  text-align: right;
+  transition: margin 250ms;
+}
+
+#app
+  #restaurants-section
+  .menu-section-content
+  .restaurant-card
+  .restaurant-card-content
+  .restaurant-card-content-items
+  .restaurant-card-title {
+  color: whitesmoke;
+  font-size: 1.5em;
+}
+
+#app
+  #restaurants-section
+  .menu-section-content
+  .restaurant-card
+  .restaurant-card-content
+  .restaurant-card-content-items
+  .restaurant-card-desc {
+  color: #42a5f5;
+  font-size: 0.9em;
+}
+
+.restaurant-card {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.restaurant-card:hover {
+  top: -10px;
+}
+
+#app #tools-section .menu-section-content {
+  display: flex;
+  gap: 1em;
+}
+#app #tools-section .menu-section-content .tool-card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 8vw;
+  max-height: 160px;
+  min-height: 140px;
+  overflow: hidden;
+  position: relative;
+
+  width: calc(100% / 6);
+}
+
+#app #tools-section .menu-section-content .tool-card .tool-card-background {
+  border-radius: 10px;
+  filter: grayscale(100%);
+  height: 100%;
+  left: 0px;
+  opacity: 0.5;
+  position: absolute;
+  top: 0px;
+  transition: filter 250ms;
+  width: 100%;
+}
+
+#app #tools-section .menu-section-content .tool-card .tool-card-content {
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.1));
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 40px);
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  width: calc(100% - 40px);
+  z-index: 2;
+}
+
+#app
+  #tools-section
+  .menu-section-content
+  .tool-card
+  .tool-card-content
+  .tool-card-content-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+#app
+  #tools-section
+  .menu-section-content
+  .tool-card
+  .tool-card-content
+  .tool-card-content-header
+  .tool-card-label {
+  color: #42a5f5;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+
+#app
+  #tools-section
+  .menu-section-content
+  .tool-card
+  .tool-card-content
+  .tool-card-content-header
+  .tool-card-name {
+  color: whitesmoke;
+  font-size: 1.25em;
+}
+
+.tool-card {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.tool-card:hover {
+  top: -10px;
+}
+#app #movies-section .menu-section-content {
+  display: flex;
+  gap: 1em;
+}
+
+#app #movies-section .menu-section-content .movie-card {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  height: 40vw;
+  max-height: 600px;
+  min-height: 460px;
+  min-width: 260px;
+  overflow: hidden;
+  position: relative;
+
+  width: calc(100% / 4);
+}
+
+#app #movies-section .menu-section-content .movie-card .movie-card-background {
+  border-radius: 10px;
+  height: 100%;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  transition: transform 250ms;
+  width: 100%;
+  z-index: 1;
+}
+
+#app #movies-section .menu-section-content #movie-card-1 .movie-card-content {
+  background: linear-gradient(
+    to top,
+    rgba(57, 73, 171, 0.4),
+    transparent,
+    rgba(0, 0, 0, 0.4)
+  );
+  border-radius: 10px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+#app
+  #movies-section
+  .menu-section-content
+  .movie-card
+  .movie-card-content
+  .movie-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 30px;
+}
+
+#app
+  #movies-section
+  .menu-section-content
+  .movie-card
+  .movie-card-content
+  .movie-card-info
+  .movie-card-title {
+  color: whitesmoke;
+  font-size: 2em;
+}
+
+#app
+  #movies-section
+  .menu-section-content
+  .movie-card
+  .movie-card-content
+  .movie-card-info
+  span {
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#app
+  #movies-section
+  .menu-section-content
+  .movie-card
+  .movie-card-content
+  .movie-card-info
+  .movie-card-desc {
+  color: #c8c8c8;
+  font-size: 0.9em;
+}
+
+.movie-icon {
+  bottom: 0px;
+  color: whitesmoke;
+  font-size: 5em;
+  padding: 30px;
+  position: absolute;
+  right: 0px;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 250ms;
+}
+
+.movie-card {
+  position: relative;
+  top: 0;
+  transition: top ease 0.5s;
+}
+
+.movie-card:hover {
+  top: -10px;
+}
+#app #movies-section .menu-section-content {
+  display: flex;
+  gap: 1em;
+}
+
+#app
+  #movies-section
+  .menu-section-content
+  .movie-card:hover
+  .movie-card-content
+  .movie-icon {
+  transform: translate(-20%, -20%) scale(1.2);
+}
+
 @media (max-width: 1300px) {
   #app #app-menu #app-menu-content-wrapper {
     padding: 30px;
+  }
+  #app
+    #app-menu
+    #app-menu-content-wrapper
+    #app-menu-content
+    #restaurants-section
+    .menu-section-content {
+    flex-wrap: wrap;
+  }
+  #app
+    #app-menu
+    #app-menu-content-wrapper
+    #app-menu-content
+    #restaurants-section
+    .menu-section-content
+    .restaurant-card {
+    height: 30vw;
+    max-height: 300px;
+    position: relative;
+    width: calc(50% - 0.5em);
+  }
+  #app
+    #app-menu
+    #app-menu-content-wrapper
+    #app-menu-content
+    #tools-section
+    .menu-section-content {
+    flex-wrap: wrap;
+  }
+  #app
+    #app-menu
+    #app-menu-content-wrapper
+    #app-menu-content
+    #tools-section
+    .menu-section-content
+    .tool-card {
+    width: calc(33.33% - 0.69em);
   }
 }

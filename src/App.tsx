@@ -1,7 +1,8 @@
 import "./App.css";
 import { RxBell } from "react-icons/rx";
 import { AiOutlineLogout } from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { FaRegSun } from "react-icons/fa";
+import { useEffect, useState, useRef } from "react";
 import WeatherApp from "./components/WeatherApp";
 import FoodApp from "./components/FoodApp";
 import AppsApp from "./components/AppsApp";
@@ -63,6 +64,24 @@ interface WeatherData {
 }
 
 function App() {
+  const weatherRef = useRef<HTMLDivElement>(null);
+  const foodRef = useRef<HTMLDivElement>(null);
+  const appsRef = useRef<HTMLDivElement>(null);
+  const moviesRef = useRef<HTMLDivElement>(null);
+
+  const handleScrollToWeather = () => {
+    weatherRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleScrollToFood = () => {
+    foodRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleScrollToApps = () => {
+    appsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const handleScrollToMovies = () => {
+    moviesRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   function getConvertedData(): Promise<any> {
     const options = {
       method: "GET",
@@ -196,7 +215,7 @@ function App() {
                   <span className="weather">
                     {weatherData ? (
                       <div>
-                        <i className="fa-duotone">☀️</i>
+                        <FaRegSun className="weather-icon-info" />
                         <span className="weather-temperature-value">
                           {weatherData.temperature}
                         </span>
@@ -220,7 +239,7 @@ function App() {
                   </div>
                   <span className="reminder-text">
                     Meeting with Michael Martin
-                    <span className="reminder-time">10AM</span>
+                    <span className="reminder-time">10:OO</span>
                   </span>
                 </div>
               </div>
@@ -235,25 +254,45 @@ function App() {
                 </button>
               </div>
             </div>
-            {/* jump to ... */}
+
             <div id="quick-nav" className="scrollable-component">
-              <div className="quick-nav-item clear-button">
+              <div
+                onClick={handleScrollToWeather}
+                className="quick-nav-item clear-button"
+              >
                 <span className="quick-nav-item-label">Weather</span>
               </div>
-              <div className="quick-nav-item clear-button">
+              <div
+                onClick={handleScrollToFood}
+                className="quick-nav-item clear-button"
+              >
                 <span className="quick-nav-item-label">Food</span>
               </div>
-              <div className="quick-nav-item clear-button">
+              <div
+                onClick={handleScrollToApps}
+                className="quick-nav-item clear-button"
+              >
                 <span className="quick-nav-item-label">Apps</span>
               </div>
-              <div className="quick-nav-item clear-button">
+              <div
+                onClick={handleScrollToMovies}
+                className="quick-nav-item clear-button"
+              >
                 <span className="quick-nav-item-label">Movies</span>
               </div>
             </div>
-            <WeatherApp />
-            <FoodApp />
-            <AppsApp />
-            <MoviesApp />
+            <div ref={weatherRef}>
+              <WeatherApp />
+            </div>
+            <div ref={foodRef}>
+              <FoodApp />
+            </div>
+            <div ref={appsRef}>
+              <AppsApp />
+            </div>
+            <div ref={moviesRef}>
+              <MoviesApp />
+            </div>
           </div>
         </div>
       </div>

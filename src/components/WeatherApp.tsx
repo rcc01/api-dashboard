@@ -1,17 +1,22 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
+import { FaSun, FaCloudSun, FaCloud } from "react-icons/fa";
+import { BsFillCloudsFill, BsFillCloudRainFill } from "react-icons/bs";
+import { BsCloudHaze2Fill } from "react-icons/bs";
+import { FaRegSun } from "react-icons/fa";
 
 interface DailyWeatherForecast {
-  id: number;
   temperature: number;
-  weatherDescription: string;
+  summary: string;
   day: string;
-  icon: number;
+  weather: string;
+  // children?: React.ReactNode;
 }
 
-const WeatherApp = () => {
-  const [weatherForecast, setWeatherForecast] =
-    useState<DailyWeatherForecast | null>(null);
+const WeatherApp: React.FC = () => {
+  const [weatherForecast, setWeatherForecast] = useState<
+    DailyWeatherForecast[] | null
+  >(null);
 
   useEffect(() => {
     const fetchForecast = async () => {
@@ -24,6 +29,7 @@ const WeatherApp = () => {
             "X-RapidAPI-Host": "ai-weather-by-meteosource.p.rapidapi.com",
           },
         };
+        // PENDING: change the API to accept longitud and latitude to get any location and show the weather. Atm, it's only for Madrid
         const response = await fetch(
           "https://ai-weather-by-meteosource.p.rapidapi.com/daily?place_id=madrid&language=es&units=metric",
           options
@@ -31,53 +37,65 @@ const WeatherApp = () => {
 
         const data = await response.json();
         const dataArr = data.daily.data;
-        // console.log(dataArr);
 
-        for (let i = 0; i < dataArr.length; i++) {
-          // should I assign the console.logs below to a variable const?
-          // console.log(
-          //   dataArr[i].temperature,
-          //   dataArr[i].summary,
-          //   dataArr[i].day,
-          //   dataArr[i].icon
-          // );
-          setWeatherForecast({
-            id: dataArr[i],
-            day: dataArr[i].day,
-            temperature: dataArr[i].temperature,
-            weatherDescription: dataArr[i].summary,
-            icon: dataArr[i].icon,
-          });
-        }
+        setWeatherForecast(dataArr.slice(0, 10));
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
     };
+
     fetchForecast();
   }, []);
+
+  const reverseDate = (americanDate: string) => {
+    // destructuring:
+    // const splitDate = americanDate.split("-");
+    // const year = splitDate[0];
+    // const month = splitDate[1];
+    // const day = splitDate[2];
+    const [year, month, day] = americanDate.split("-");
+    const europeanDate = `${day}-${month}-${year}`;
+    return europeanDate;
+  };
 
   return (
     <div id="weather-section" className="menu-section">
       <div className="menu-section-title">
-        <i>🌞</i>
+        <FaRegSun />
         <span className="menu-section-title-text">
           What's the weather like?
         </span>
       </div>
       <div className="scrollable-component menu-section-content">
-        {/* 7 day cards */}
-        {weatherForecast ? (
-          <div key={weatherForecast.id} className="day-card">
+        {weatherForecast?.map((item, index) => (
+          <div key={index} className="day-card">
             <div className="day-card-content">
               <span className="day-weather-temperature">
-                {weatherForecast.temperature}
+                {item.temperature} °C
               </span>
+              <i className="day-weather-icon">
+                {item.weather === "mostly_sunny" && <FaSun />}
+                {item.weather === "partly_sunny" && <FaCloudSun />}
+                {item.weather === "cloudy" && <FaCloud />}
+                {item.weather === "mostly_cloudy" && <BsFillCloudsFill />}
+                {item.weather === "psbl_rain" && <BsFillCloudRainFill />}
+                {item.weather === "overcast" && <BsCloudHaze2Fill />}
+              </i>
+              {/* pra mostrar la descripcion haz lo mismo de arriba */}
+              <div className="day-weather-description">
+                {item.weather === "partly_sunny" && "Partly sunny"}
+                {item.weather === "cloudy" && "Cloudy"}
+                {item.weather === "psbl_rain" && "Possible Rain"}
+                {item.weather === "mostly_cloudy" && "Mostly Cloudy"}
+                {item.weather === "overcast" && "Overcast"}
+              </div>
+              <p style={{ fontSize: "0.7em", textAlign: "center" }}>
+                {/* how to reverse this? */}
+                {reverseDate(item.day)}
+              </p>
             </div>
           </div>
-        ) : (
-          <p>Loading...</p>
-        )}
-        <div className="day-card"></div>
+        ))}
       </div>
     </div>
   );
